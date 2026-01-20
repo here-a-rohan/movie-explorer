@@ -1,0 +1,93 @@
+/* ---------- GLOBAL ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #e5e7eb;
+  background: transparent;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+.app-wrapper {
+  min-height: 100vh;
+  padding-bottom: 40px;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)),
+    url("/images/film.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* ---------- LAYOUT ---------- */
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  color: #f8fafc;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- SEARCH ---------- */
+
+.search-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- MOVIE CARDS ---------- */
+
+.card {
+  background: rgba(17, 24, 39, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+}
+
+.card h5 {
+  font-weight: 600;
+}
+
+.card p {
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+/* ---------- INPUTS ---------- */
+
+input,
+button {
+  border-radius: 8px !important;
+}
+
+/* ---------- GRID ---------- */
+
+#movies {
+  margin-top: 10px;
+}
+
+/* ---------- LOADING ---------- */
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.8;
+}

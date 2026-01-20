@@ -1,0 +1,39 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="Django" />
+          <option value="firebase-admin" />
+          <option value="easy-thumbnails" />
+          <option value="django-cors-headers" />
+          <option value="djangorestframework" />
+          <option value="honeycomb-beeline" />
+          <option value="django-storages" />
+          <option value="django-health-check" />
+          <option value="psycopg2-binary" />
+          <option value="djangorestframework-jwt-5" />
+          <option value="colorthief" />
+          <option value="boto3" />
+          <option value="phonenumbers" />
+          <option value="pycountry" />
+          <option value="qrcode" />
+          <option value="facebook-business" />
+          <option value="googletrans" />
+          <option value="pytz" />
+          <option value="signxml" />
+          <option value="razorpay" />
+          <option value="bs4" />
+          <option value="xhtml2pdf" />
+          <option value="num2words" />
+          <option value="google-auth-oauthlib" />
+          <option value="google-api-python-client" />
+          <option value="SQLAlchemy" />
+          <option value="pandas" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="SqlNoDataSourceInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+  </profile>
+</component>
