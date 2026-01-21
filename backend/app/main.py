@@ -1,39 +1,54 @@
-from fastapi import FastAPI, Depends, Query
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from app.database import get_db
-from app.models import Movie
+from app import models, schemas, crud
+from app.database import engine, Base, get_db
+from fastapi.middleware.cors import CORSMiddleware
+from app.routers import movies, actors, directors, genres
+Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(title="Movie Explorer API")
 
-# --- CORS ---
-origins = [
-    "http://localhost:5173",
-]
-
+# Allow CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# --- Movies endpoint ---
-@app.get("/movies")
-def list_movies(
-    title: str | None = Query(None),
-    year: int | None = Query(None),
-    rating: float | None = Query(None),
+
+# Movie routers
+@app.get("/movies", response_model=list[schemas.Movie])
+def read_movies(
+    title: str | None = None,
+    year: int | None = None,
+    rating: float | None = None,
+    director: str | None = None,
+    genre: str | None = None,
+    actor: str | None = None,
     db: Session = Depends(get_db)
 ):
-    query = db.query(Movie)
-    if title:
-        query = query.filter(Movie.title.ilike(f"%{title}%"))
-    if year:
-        query = query.filter(Movie.year == year)
-    if rating:
-        query = query.filter(Movie.rating >= rating)
+    filters = {
+        k: v for k, v in {
+            "title": title,
+            "year": year,
+            "rating": rating,
+            "director": director,
+            "genre": genre,
+            "actor": actor,
+        }.items() if v is not None
+    }
 
-    movies = query.all()
-    return movies
+    return crud.get_movies(db, filters)
+
+@app.get("/movies/{movie_id}", response_model=schemas.Movie)
+def read_movie(movie_id: int, db: Session = Depends(get_db)):
+    movie = crud.get_movie_by_id(db, movie_id)
+
+    if not movie:
+        raise HTTPException(status_code=404, detail="Movie not found")
+
+    return movie
+
+
