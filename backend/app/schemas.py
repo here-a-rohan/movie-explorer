@@ -6,24 +6,27 @@ class GenreBase(BaseModel):
 
 class Genre(GenreBase):
     id: int
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class DirectorBase(BaseModel):
     name: str
 
 class Director(DirectorBase):
     id: int
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class ActorBase(BaseModel):
     name: str
 
 class Actor(ActorBase):
     id: int
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class MovieBase(BaseModel):
     title: str
@@ -38,5 +41,6 @@ class Movie(MovieBase):
     director: Director
     genres: List[Genre] = []
     actors: List[Actor] = []
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }

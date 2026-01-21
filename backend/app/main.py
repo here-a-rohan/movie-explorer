@@ -1,9 +1,10 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from app import models, schemas, crud
+from app import schemas, crud
 from app.database import engine, Base, get_db
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import movies, actors, directors, genres
+from fastapi import HTTPException
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Movie Explorer API")
