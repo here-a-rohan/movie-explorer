@@ -23,7 +23,5 @@ No authentication required.
 
 ## Run with Docker
 
-From the repo root:
-
-```bash
 docker compose up -d --build
+
