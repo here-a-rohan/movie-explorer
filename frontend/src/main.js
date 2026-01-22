@@ -37,8 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="col-md-4">
           <div class="card h-100 shadow-sm">
             <div class="card-body">
-              <h5>${m.title}</h5>
-              <p>🎞 ${m.genre}</p>
+               <h5>
+                  <a href="/movie_details.html?id=${m.id}" class="text-decoration-none">
+                    ${m.title}
+                  </a>
+                </h5>
+              <p>🎞 ${m.genres.map(g => g.name).join(", ")}</p>
               <p>📅 ${m.year}</p>
               <p>⭐ ${m.rating}</p>
             </div>
@@ -63,3 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial load
   load();
 });
+
+
+function loadYears() {
+  const yearSelect = document.getElementById("year");
+  for (let y = 2026; y >= 1990; y--) {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = y;
+    yearSelect.appendChild(opt);
+  }
+}
+
+loadYears();
